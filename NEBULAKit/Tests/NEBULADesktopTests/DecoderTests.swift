@@ -243,7 +243,9 @@ struct DecoderTests {
             await server.updateRequests.last == .updateRequest(incremental: false, x: 0, y: 0, width: 100, height: 70)
         })
         // ExtendedDesktopSize (reason 0, status 0, one screen)
-        let screen: [UInt8] = Wire.u32(1) + Wire.u16(0) + Wire.u16(0) + Wire.u16(200) + Wire.u16(120) + Wire.u32(0)
+        var screen: [UInt8] = Wire.u32(1)
+        for v in [0, 0, 200, 120] { screen += Wire.u16(v) }
+        screen += Wire.u32(0)
         try await h.apply([Wire.header(0, 0, 200, 120, -308) + [1, 0, 0, 0] + screen])
         #expect(await h.client.desktopSize?.height == 120)
         // A failed status (answer to a SetDesktopSize) leaves the size alone.

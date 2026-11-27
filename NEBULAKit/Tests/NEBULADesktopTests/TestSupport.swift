@@ -67,6 +67,15 @@ final class Deflater {
 
 // MARK: - Rectangle builders (server → client wire format)
 
+/// Big-endian UInt32 at `i`, built in typed steps: one long `<<`/`|` chain times out Xcode 26's type checker.
+func bigEndian32(_ b: [UInt8], at i: Int) -> UInt32 {
+    var v = UInt32(b[i]) << 24
+    v |= UInt32(b[i + 1]) << 16
+    v |= UInt32(b[i + 2]) << 8
+    v |= UInt32(b[i + 3])
+    return v
+}
+
 enum Wire {
     static func u16(_ v: Int) -> [UInt8] { [UInt8((v >> 8) & 0xFF), UInt8(v & 0xFF)] }
     static func u32(_ v: UInt32) -> [UInt8] {
@@ -258,7 +267,12 @@ actor FakeRFBServer {
         sharedFlag = try await read(1)[0]
         let format: [UInt8] = [32, 24, 0, 1, 0, 255, 0, 255, 0, 255, 16, 8, 0, 0, 0, 0]
         let nameBytes = Array(name.utf8)
-        try await send(Wire.u16(width) + Wire.u16(height) + format + Wire.u32(UInt32(nameBytes.count)) + nameBytes)
+        var serverInit = Wire.u16(width)
+        serverInit += Wire.u16(height)
+        serverInit += format
+        serverInit += Wire.u32(UInt32(nameBytes.count))
+        serverInit += nameBytes
+        try await send(serverInit)
     }
 
     func readMessage() async throws -> ClientMessage {
@@ -271,18 +285,14 @@ actor FakeRFBServer {
             let b = try await read(3)
             let count = Int(b[1]) << 8 | Int(b[2])
             let raw = try await read(4 * count)
-            return .setEncodings((0..<count).map { i in
-                Int32(bitPattern: UInt32(raw[4 * i]) << 24 | UInt32(raw[4 * i + 1]) << 16
-                    | UInt32(raw[4 * i + 2]) << 8 | UInt32(raw[4 * i + 3]))
-            })
+            return .setEncodings((0..<count).map { i in Int32(bitPattern: bigEndian32(raw, at: 4 * i)) })
         case 3:
             let b = try await read(9)
             func v(_ i: Int) -> Int { Int(b[i]) << 8 | Int(b[i + 1]) }
             return .updateRequest(incremental: b[0] != 0, x: v(1), y: v(3), width: v(5), height: v(7))
         case 4:
             let b = try await read(7)
-            return .key(keysym: UInt32(b[3]) << 24 | UInt32(b[4]) << 16 | UInt32(b[5]) << 8 | UInt32(b[6]),
-                        down: b[0] != 0)
+            return .key(keysym: bigEndian32(b, at: 3), down: b[0] != 0)
         case 5:
             let b = try await read(5)
             return .pointer(buttons: b[0], x: Int(b[1]) << 8 | Int(b[2]), y: Int(b[3]) << 8 | Int(b[4]))
