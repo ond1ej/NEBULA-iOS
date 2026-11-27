@@ -212,8 +212,11 @@ struct DecoderTests {
         #expect(await h.client.pixel(x: 12, y: 11) == 0xFFBB_BBBB)
         #expect(await h.client.pixel(x: 14, y: 11) == 0xFFBB_BBBB)
         // palette RLE (2 colours) on a 300-pixel row (20×15): long run with a 255 continuation byte
-        let paletteRLE: [UInt8] = [130] + Wire.cpixel(0x0A0B0C) + Wire.cpixel(0xC0B0A0)
-            + [0x01] + [0x80, 255, 42] + [0x81, 0]
+        // built in steps: one long `+` chain of array literals takes Swift 6.3 too long to type-check
+        var paletteRLE: [UInt8] = [130]
+        paletteRLE += Wire.cpixel(0x0A0B0C)
+        paletteRLE += Wire.cpixel(0xC0B0A0)
+        paletteRLE += [0x01, 0x80, 255, 42, 0x81, 0]
         // 1 pixel of colour 1, then 1 + 255 + 42 = 298 of colour 0, then 1 of colour 1 → 300
         try await h.apply([Wire.zrle(20, 20, 20, 15, tiles: paletteRLE, deflater: deflater)])
         #expect(await h.client.pixel(x: 20, y: 20) == 0xFFC0_B0A0)
@@ -272,8 +275,15 @@ struct DecoderTests {
             return false
         }
         let cut = Array("secret clipboard".utf8)
-        try await h.server.send([2] + [3, 0, 0, 0] + Wire.u32(UInt32(cut.count)) + cut + [1, 0] + Wire.u16(0)
-                                + Wire.u16(1) + [0, 0, 0, 0, 0, 0])
+        // Bell, then ServerCutText (3), then SetColourMapEntries (1); built in steps for the type checker
+        var messages: [UInt8] = [2, 3, 0, 0, 0]
+        messages += Wire.u32(UInt32(cut.count))
+        messages += cut
+        messages += [1, 0]
+        messages += Wire.u16(0)
+        messages += Wire.u16(1)
+        messages += [0, 0, 0, 0, 0, 0]
+        try await h.server.send(messages)
         try await h.apply([Wire.tightFill(0, 0, 2, 2, 0x778899)])
         #expect(await h.client.pixel(x: 1, y: 1) == 0xFF77_8899)
         #expect(await bell.value)
