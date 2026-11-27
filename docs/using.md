@@ -44,7 +44,8 @@ The details are in the server repository's documentation.
 2. **Scan or paste it in the app.** On first launch the app shows "Connect to NEBULA". Tap **Scan QR code**, or paste
    the `nebula://pair?...` link into the text field and tap **Pair**. The app contacts the gateway and stops if the
    server cannot prove it holds the key whose fingerprint is in the link, or if it speaks a gateway protocol the app
-   does not support.
+   does not support. The app registers no URL scheme, so tapping a `nebula://` link in a browser or a message does
+   nothing: a pairing link can only come from the scanner or the paste field.
 3. **Confirm with Face ID or Touch ID.** The app creates its device keys: an identity key for signing in and a
    confirmation key that only Face ID, Touch ID or the device passcode can unlock (in the Secure Enclave where the
    device has one), plus a random device secret for the vault.

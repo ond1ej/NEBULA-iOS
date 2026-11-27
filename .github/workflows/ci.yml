@@ -54,6 +54,15 @@ jobs:
           done
           python3 -m py_compile scripts/*.py
 
+      - name: Pairing links only from the scanner or the paste field
+        run: |
+          # no URL scheme and no URL handler: a link in a web page or a message must not reach the pairing screen
+          if grep -rnE 'CFBundleURLTypes|onOpenURL|handlesExternalEvents' --include='*.plist' --include='*.swift' \
+               iOS macOS NEBULAKit/Sources; then
+            echo "found a URL scheme or URL handler (see docs/using.md, pairing)" >&2
+            exit 1
+          fi
+
       - name: NEBULAKit build and tests
         working-directory: NEBULAKit
         run: |

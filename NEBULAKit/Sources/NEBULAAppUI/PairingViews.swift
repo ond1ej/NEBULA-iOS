@@ -97,9 +97,8 @@ public struct WelcomeView: View {
             } onCancel: { scanning = false }
         }
         #endif
-        .onOpenURL { url in
-            if url.scheme == "nebula" { link = url.absoluteString }
-        }
+        // Deliberately no URL scheme and no open-URL handler: a pairing link is taken only from the QR scanner or the
+        // paste field, so a link on a web page or in a message can never point the pairing screen at another server.
     }
 
     static func defaultName() -> String {

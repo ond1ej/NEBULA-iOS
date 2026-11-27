@@ -13,7 +13,6 @@ struct NEBULAApp: App {
             NebulaRootView(model: model)
                 .nebulaAppLock()
                 .onAppear { delegate.model = model }
-                .onOpenURL { url in delegate.open(url) }
         }
     }
 }
@@ -33,9 +32,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: any Error) {}
-
-    @MainActor
-    func open(_ url: URL) {}
 
     // banners for approvals / sign-ins also while the app is open
     nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,

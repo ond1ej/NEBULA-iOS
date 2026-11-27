@@ -21,8 +21,8 @@ The iPhone app on the iOS simulator, paired with a demo NEBULA server (synthetic
 |---|---|---|
 | ![Chats](docs/images/ios-home.png) | ![A conversation](docs/images/ios-conversation.png) | ![Agents](docs/images/ios-agents.png) |
 | **Chats** with each agent | **A conversation**: the agent's answer and its step screenshots | **Agents** and their state |
-| ![Activity](docs/images/ios-activity.png) | ![Live Desktop](docs/images/ios-live-desktop.png) | |
-| **Activity**: approvals and notifications | **Live Desktop**: watch, then take control | |
+| ![Activity](docs/images/ios-activity.png) | | |
+| **Activity**: approvals and notifications | | |
 
 ## Features
 

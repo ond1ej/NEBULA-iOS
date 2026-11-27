@@ -4,16 +4,5 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).pair</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>nebula</string>
-			</array>
-		</dict>
-	</array>
 </dict>
 </plist>
