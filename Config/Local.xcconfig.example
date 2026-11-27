@@ -1,0 +1,17 @@
+// Copy this file to Config/Local.xcconfig (git-ignored) and fill in your own values.
+// Xcode picks the file up on the next build; you do not need to regenerate the project.
+
+// Your Apple Developer Team ID (Xcode > Settings > Accounts > your team, or developer.apple.com > Membership).
+// A free Apple ID works too: Xcode creates a "Personal Team" for it.
+DEVELOPMENT_TEAM = ABCDE12345
+
+// Must be unique to you: Apple allows each bundle identifier in one team only.
+NEBULA_BUNDLE_ID_PREFIX = com.yourname
+
+// Mac: sign with your development certificate instead of "to run locally", and use the provisioned entitlements
+// (adds a keychain access group so the vault key can live in the data-protection keychain).
+// CODE_SIGN_IDENTITY[sdk=macosx*] = Apple Development
+// NEBULA_MAC_ENTITLEMENTS = macOS/NEBULA-provisioned.entitlements
+
+// iPhone: enable remote push notifications (needs a paid developer program and an APNs key on your server).
+// NEBULA_IOS_ENTITLEMENTS = iOS/NEBULA-push.entitlements

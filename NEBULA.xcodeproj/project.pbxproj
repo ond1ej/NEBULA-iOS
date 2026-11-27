@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C561198D6C115DB4CF3293D /* NEBULAAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = EA94D933B75B08406F1268A5 /* NEBULAAppUI */; };
+		4BEFDA2ED7F7E7437D12B42C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FEBF7B953FE730960BA718B8 /* Localizable.xcstrings */; };
+		9FB674F709BC73EFC119105C /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BB7D8D97DEC8D15BDD4F56B /* InfoPlist.xcstrings */; };
+		A2C0735A51B2391657E59F28 /* NEBULAAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 62CE17A88BE8C9209C925D02 /* NEBULAAppUI */; };
+		E0CD97C5189357D24CBC5F7D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FEBF7B953FE730960BA718B8 /* Localizable.xcstrings */; };
+		F1BAA1803AF7A5565DBFD7A8 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BB7D8D97DEC8D15BDD4F56B /* InfoPlist.xcstrings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D91D768E7A3A3688B1DA183C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 244210E48437B6556980A702 /* Project object */;
+			proxyType = "1";
+			remoteGlobalIDString = "92B674F29141D59BE33BB9A3";
+			remoteInfo = NEBULA;
+		};
+		E19AFF5A32BC3ED4720D4977 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 244210E48437B6556980A702 /* Project object */;
+			proxyType = "1";
+			remoteGlobalIDString = FC6C7A839BD9D7BAD4352D00;
+			remoteInfo = "NEBULA Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4BB7D8D97DEC8D15BDD4F56B /* InfoPlist.xcstrings */ = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.json.xcstrings;
+			path = InfoPlist.xcstrings;
+			sourceTree = "<group>";
+		};
+		6D0D1F83346244492F4F6CC0 /* NEBULAMacUITests.xctest */ = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = "0";
+			path = NEBULAMacUITests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */ = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xcconfig;
+			path = Signing.xcconfig;
+			sourceTree = "<group>";
+		};
+		9C292DE81D7775E1B0AE0179 /* NEBULA.app */ = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = "0";
+			path = NEBULA.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1A0DC413798FD3187BC2C63 /* NEBULAUITests.xctest */ = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = "0";
+			path = NEBULAUITests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE4B55B0E650CD65D2FA1588 /* NEBULA.app */ = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = "0";
+			path = NEBULA.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FEBF7B953FE730960BA718B8 /* Localizable.xcstrings */ = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.json.xcstrings;
+			path = Localizable.xcstrings;
+			sourceTree = "<group>";
+		};
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		732491369A8EDCA732D4253F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				Info-Debug.plist,
+				NEBULA.entitlements,
+				NEBULA-provisioned.entitlements,
+			);
+			target = FC6C7A839BD9D7BAD4352D00 /* NEBULA Mac */;
+		};
+		C2B498F8AC266AD1E047BF70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				Info-Debug.plist,
+				NEBULA-push.entitlements,
+			);
+			target = 92B674F29141D59BE33BB9A3 /* NEBULA */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		095A14E45D58E47F699D2CBF /* UITests-iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "UITests-iOS";
+			sourceTree = "<group>";
+		};
+		5FD33141CC6B85275CF8FD1C /* UITests-macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "UITests-macOS";
+			sourceTree = "<group>";
+		};
+		D983CF383241BB94B6FE2A65 /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C2B498F8AC266AD1E047BF70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		E2816DB51D3D96397448FE0E /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				732491369A8EDCA732D4253F /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		338BC3BE14020C777A71524F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+				1C561198D6C115DB4CF3293D /* NEBULAAppUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		6D3623AABB41FE6DDDF05E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+				A2C0735A51B2391657E59F28 /* NEBULAAppUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		7348FC043AFE6ED7021E1978 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		CB3E6635B6C5AE301BF464F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		664F835B1ED89846DAB355B5 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				D983CF383241BB94B6FE2A65 /* iOS */,
+				E2816DB51D3D96397448FE0E /* macOS */,
+				095A14E45D58E47F699D2CBF /* UITests-iOS */,
+				5FD33141CC6B85275CF8FD1C /* UITests-macOS */,
+				ED60528B5E545C1CE67B653E /* Config */,
+				A90574968614999E6CE31978 /* Localization */,
+				BEAD8915881B60FC177E63AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A90574968614999E6CE31978 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				FEBF7B953FE730960BA718B8 /* Localizable.xcstrings */,
+				4BB7D8D97DEC8D15BDD4F56B /* InfoPlist.xcstrings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		BEAD8915881B60FC177E63AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE4B55B0E650CD65D2FA1588 /* NEBULA.app */,
+				9C292DE81D7775E1B0AE0179 /* NEBULA.app */,
+				B1A0DC413798FD3187BC2C63 /* NEBULAUITests.xctest */,
+				6D0D1F83346244492F4F6CC0 /* NEBULAMacUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED60528B5E545C1CE67B653E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92B674F29141D59BE33BB9A3 /* NEBULA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB4DBC7DFD2AC264B4620E9 /* Build configuration list for PBXNativeTarget "NEBULA" */;
+			buildPhases = (
+				6D94F154F0F33840DD06C3CB /* Sources */,
+				338BC3BE14020C777A71524F /* Frameworks */,
+				ABF780E7435403AD1234D8DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D983CF383241BB94B6FE2A65 /* iOS */,
+			);
+			name = NEBULA;
+			packageProductDependencies = (
+				EA94D933B75B08406F1268A5 /* NEBULAAppUI */,
+			);
+			productName = NEBULA;
+			productReference = CE4B55B0E650CD65D2FA1588 /* NEBULA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF13B33694B89E9E7158970C /* NEBULAMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 680B495DB27F7A8BD07F5E5E /* Build configuration list for PBXNativeTarget "NEBULAMacUITests" */;
+			buildPhases = (
+				96DAAC319C520A6F7786BCF3 /* Sources */,
+				CB3E6635B6C5AE301BF464F6 /* Frameworks */,
+				084CD418FB886332EC5C787B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BAE3D1EC9C271B5B3D4EDA75 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5FD33141CC6B85275CF8FD1C /* UITests-macOS */,
+			);
+			name = NEBULAMacUITests;
+			productName = NEBULAMacUITests;
+			productReference = 6D0D1F83346244492F4F6CC0 /* NEBULAMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F90CB8B2178CDE467BE601F7 /* NEBULAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7518F481E5CCD31A372BC58 /* Build configuration list for PBXNativeTarget "NEBULAUITests" */;
+			buildPhases = (
+				AEB129F0489B17980AFC13A2 /* Sources */,
+				7348FC043AFE6ED7021E1978 /* Frameworks */,
+				981F33A596CF8E510D8657A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				271A3472ACAD6BEC43FDA872 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				095A14E45D58E47F699D2CBF /* UITests-iOS */,
+			);
+			name = NEBULAUITests;
+			productName = NEBULAUITests;
+			productReference = B1A0DC413798FD3187BC2C63 /* NEBULAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FC6C7A839BD9D7BAD4352D00 /* NEBULA Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95908EBC27F48120E09B574 /* Build configuration list for PBXNativeTarget "NEBULA Mac" */;
+			buildPhases = (
+				B8C5CC6DD00EEDEDD616C42F /* Sources */,
+				6D3623AABB41FE6DDDF05E6F /* Frameworks */,
+				58D35BCE9EA57BB441B8A4F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E2816DB51D3D96397448FE0E /* macOS */,
+			);
+			name = "NEBULA Mac";
+			packageProductDependencies = (
+				62CE17A88BE8C9209C925D02 /* NEBULAAppUI */,
+			);
+			productName = "NEBULA Mac";
+			productReference = 9C292DE81D7775E1B0AE0179 /* NEBULA.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		244210E48437B6556980A702 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2720; LastUpgradeCheck = 2720; TargetAttributes = {92B674F29141D59BE33BB9A3 = {CreatedOnToolsVersion = 27.2;}; FC6C7A839BD9D7BAD4352D00 = {CreatedOnToolsVersion = 27.2;}; F90CB8B2178CDE467BE601F7 = {CreatedOnToolsVersion = 27.2; TestTargetID = 92B674F29141D59BE33BB9A3;}; DF13B33694B89E9E7158970C = {CreatedOnToolsVersion = 27.2; TestTargetID = FC6C7A839BD9D7BAD4352D00;};}; };
+			buildConfigurationList = DE9897722E12636A76F08091 /* Build configuration list for PBXProject "NEBULA" */;
+			developmentRegion = en;
+			hasScannedForEncodings = "0";
+			knownRegions = (
+				en,
+				cs,
+				Base,
+			);
+			mainGroup = "664F835B1ED89846DAB355B5";
+			minimizedProjectReferenceProxies = "1";
+			preferredProjectObjectVersion = "77";
+			productRefGroup = BEAD8915881B60FC177E63AB /* Products */;
+			projectDirPath = "";
+			packageReferences = (
+				67881A359B0B1827EF6EB763 /* XCLocalSwiftPackageReference "NEBULAKit" */,
+			);
+			projectRoot = "";
+			targets = (
+				92B674F29141D59BE33BB9A3 /* NEBULA */,
+				FC6C7A839BD9D7BAD4352D00 /* NEBULA Mac */,
+				F90CB8B2178CDE467BE601F7 /* NEBULAUITests */,
+				DF13B33694B89E9E7158970C /* NEBULAMacUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		084CD418FB886332EC5C787B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		58D35BCE9EA57BB441B8A4F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+				4BEFDA2ED7F7E7437D12B42C /* Localizable.xcstrings in Resources */,
+				9FB674F709BC73EFC119105C /* InfoPlist.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		981F33A596CF8E510D8657A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		ABF780E7435403AD1234D8DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+				E0CD97C5189357D24CBC5F7D /* Localizable.xcstrings in Resources */,
+				F1BAA1803AF7A5565DBFD7A8 /* InfoPlist.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D94F154F0F33840DD06C3CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		96DAAC319C520A6F7786BCF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		AEB129F0489B17980AFC13A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+		B8C5CC6DD00EEDEDD616C42F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = "2147483647";
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = "0";
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		271A3472ACAD6BEC43FDA872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92B674F29141D59BE33BB9A3 /* NEBULA */;
+			targetProxy = D91D768E7A3A3688B1DA183C /* PBXContainerItemProxy */;
+		};
+		BAE3D1EC9C271B5B3D4EDA75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC6C7A839BD9D7BAD4352D00 /* NEBULA Mac */;
+			targetProxy = E19AFF5A32BC3ED4720D4977 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E54FDD640CFA268883F4E86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = "15.0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.mac.uitests";
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = "NEBULA Mac";
+			};
+			name = Release;
+		};
+		3E47C5D88BF1588DE6DADA26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				SWIFT_VERSION = "6.0";
+				MARKETING_VERSION = "1.0.0";
+				CURRENT_PROJECT_VERSION = "1";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = "0";
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+			};
+			name = Debug;
+		};
+		423B5115E094BDF11630F9A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = "18.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = NEBULA;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula";
+				CODE_SIGN_ENTITLEMENTS = "$(NEBULA_IOS_ENTITLEMENTS)";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NEBULA;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_PREVIEWS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "NEBULA uses Face ID to confirm it is you and to unlock the vault.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is used only to record voice messages for your agents.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used only to scan the pairing QR code from your Mac.";
+			};
+			name = Release;
+		};
+		4FF93483E9FA5A0D201E530F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = "15.0";
+				PRODUCT_NAME = NEBULA;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.mac";
+				CODE_SIGN_ENTITLEMENTS = "$(NEBULA_MAC_ENTITLEMENTS)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS/Info-Debug.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NEBULA;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "NEBULA – your own installation";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_PREVIEWS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is used only to record voice messages for your agents.";
+			};
+			name = Debug;
+		};
+		6B276510CE2564B5DB0CCC7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = "18.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.uitests";
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = NEBULA;
+			};
+			name = Release;
+		};
+		6BDE600B6DA2DF22010E011A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = "18.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.uitests";
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = NEBULA;
+			};
+			name = Debug;
+		};
+		71F7D96E17A275F685C0037D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = "15.0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.mac.uitests";
+				GENERATE_INFOPLIST_FILE = YES;
+				TEST_TARGET_NAME = "NEBULA Mac";
+			};
+			name = Debug;
+		};
+		A858468A04F21F61FE1AC8A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = "18.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = NEBULA;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula";
+				CODE_SIGN_ENTITLEMENTS = "$(NEBULA_IOS_ENTITLEMENTS)";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS/Info-Debug.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NEBULA;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_PREVIEWS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "NEBULA uses Face ID to confirm it is you and to unlock the vault.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is used only to record voice messages for your agents.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used only to scan the pairing QR code from your Mac.";
+			};
+			name = Debug;
+		};
+		BC5501B3DBFC60A978F4969A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				SWIFT_VERSION = "6.0";
+				MARKETING_VERSION = "1.0.0";
+				CURRENT_PROJECT_VERSION = "1";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		C3FD8A0B4B37A19097CE1577 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EAFDC1CB629575D6FD4EA96 /* Signing.xcconfig */;
+			buildSettings = {
+				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = "15.0";
+				PRODUCT_NAME = NEBULA;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(NEBULA_BUNDLE_ID_PREFIX).nebula.mac";
+				CODE_SIGN_ENTITLEMENTS = "$(NEBULA_MAC_ENTITLEMENTS)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NEBULA;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "NEBULA – your own installation";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ENABLE_PREVIEWS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is used only to record voice messages for your agents.";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CB4DBC7DFD2AC264B4620E9 /* Build configuration list for PBXNativeTarget "NEBULA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A858468A04F21F61FE1AC8A5 /* Debug */,
+				423B5115E094BDF11630F9A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = "0";
+			defaultConfigurationName = Release;
+		};
+		680B495DB27F7A8BD07F5E5E /* Build configuration list for PBXNativeTarget "NEBULAMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71F7D96E17A275F685C0037D /* Debug */,
+				1E54FDD640CFA268883F4E86 /* Release */,
+			);
+			defaultConfigurationIsVisible = "0";
+			defaultConfigurationName = Release;
+		};
+		C95908EBC27F48120E09B574 /* Build configuration list for PBXNativeTarget "NEBULA Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FF93483E9FA5A0D201E530F /* Debug */,
+				C3FD8A0B4B37A19097CE1577 /* Release */,
+			);
+			defaultConfigurationIsVisible = "0";
+			defaultConfigurationName = Release;
+		};
+		D7518F481E5CCD31A372BC58 /* Build configuration list for PBXNativeTarget "NEBULAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BDE600B6DA2DF22010E011A /* Debug */,
+				6B276510CE2564B5DB0CCC7A /* Release */,
+			);
+			defaultConfigurationIsVisible = "0";
+			defaultConfigurationName = Release;
+		};
+		DE9897722E12636A76F08091 /* Build configuration list for PBXProject "NEBULA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E47C5D88BF1588DE6DADA26 /* Debug */,
+				BC5501B3DBFC60A978F4969A /* Release */,
+			);
+			defaultConfigurationIsVisible = "0";
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		67881A359B0B1827EF6EB763 /* XCLocalSwiftPackageReference "NEBULAKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = NEBULAKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62CE17A88BE8C9209C925D02 /* NEBULAAppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67881A359B0B1827EF6EB763 /* XCLocalSwiftPackageReference "NEBULAKit" */;
+			productName = NEBULAAppUI;
+		};
+		EA94D933B75B08406F1268A5 /* NEBULAAppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67881A359B0B1827EF6EB763 /* XCLocalSwiftPackageReference "NEBULAKit" */;
+			productName = NEBULAAppUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 244210E48437B6556980A702 /* Project object */;
+}

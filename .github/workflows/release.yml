@@ -1,0 +1,120 @@
+# Release archive for a version tag (vX.Y.Z): source tarball, SHA256SUMS and release notes taken from CHANGELOG.md.
+# No app binaries are built or published: everybody builds and signs the apps from source.
+#
+# A pushed tag creates a DRAFT GitHub release; the maintainer reviews and publishes it by hand.
+# Run it manually (workflow_dispatch) to build and verify the archive for an existing tag without publishing anything.
+# No secrets are used: only the automatic GITHUB_TOKEN, with write access in the publish job alone.
+name: release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build (dry run: the archive is uploaded as a workflow artifact, nothing is published)"
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build release archive
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      tag: ${{ steps.meta.outputs.tag }}
+      version: ${{ steps.meta.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check tag, MARKETING_VERSION and CHANGELOG
+        id: meta
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          TAG="${INPUT_TAG:-${GITHUB_REF_NAME}}"
+          echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$' || { echo "not a release tag (vX.Y.Z): $TAG" >&2; exit 1; }
+          VERSION="${TAG#v}"
+          # every MARKETING_VERSION of the Xcode project (one per build configuration) must equal the tag
+          PBXPROJ=NEBULA.xcodeproj/project.pbxproj
+          APPLE_VERSIONS="$(sed -n 's/^[[:space:]]*MARKETING_VERSION = "\{0,1\}\([^";]*\)"\{0,1\};$/\1/p' "$PBXPROJ")"
+          [ -n "$APPLE_VERSIONS" ] || { echo "no MARKETING_VERSION found in $PBXPROJ" >&2; exit 1; }
+          for v in $APPLE_VERSIONS; do
+            [ "$v" = "$VERSION" ] || { echo "version mismatch: tag $VERSION, MARKETING_VERSION $v ($PBXPROJ)" >&2; exit 1; }
+          done
+          grep -q "^## \[$VERSION\]" CHANGELOG.md || { echo "CHANGELOG.md has no section for $VERSION" >&2; exit 1; }
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Create archive, release notes and checksums
+        env:
+          TAG: ${{ steps.meta.outputs.tag }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          OUT="$RUNNER_TEMP/release"
+          mkdir -p "$OUT"
+          # source: exactly the tagged tree (no build output, no ignored files)
+          git archive --format=tar --prefix="NEBULA-iOS-$VERSION/" "$TAG" | gzip -n -9 > "$OUT/NEBULA-iOS-$VERSION-source.tar.gz"
+          # release notes: the CHANGELOG section of this version
+          awk -v v="$VERSION" '
+            $0 ~ "^## \\[" v "\\]" { on = 1; next }
+            on && /^## \[/ { exit }
+            on && /^\[[^]]+\]: / { next }
+            on { print }
+          ' CHANGELOG.md > "$OUT/RELEASE_NOTES.md"
+          [ -s "$OUT/RELEASE_NOTES.md" ] || { echo "empty release notes" >&2; exit 1; }
+          {
+            echo
+            echo "Source only: build and sign the apps yourself, see docs/building.md. They need a NEBULA server:"
+            echo "https://github.com/ond1ej/NEBULA_v1"
+            echo
+            echo "Verify the download with: shasum -a 256 -c SHA256SUMS"
+          } >> "$OUT/RELEASE_NOTES.md"
+          (cd "$OUT" && sha256sum "NEBULA-iOS-$VERSION-source.tar.gz" > SHA256SUMS && sha256sum -c SHA256SUMS)
+          ls -la "$OUT"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-${{ steps.meta.outputs.version }}
+          path: ${{ runner.temp }}/release/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: Create draft GitHub release
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-${{ needs.build.outputs.version }}
+          path: release
+      - name: Verify checksums
+        working-directory: release
+        run: sha256sum -c SHA256SUMS
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.build.outputs.tag }}
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          gh release create "$TAG" --draft --verify-tag \
+            --title "NEBULA for iPhone and Mac $VERSION" \
+            --notes-file release/RELEASE_NOTES.md \
+            "release/NEBULA-iOS-$VERSION-source.tar.gz" \
+            release/SHA256SUMS

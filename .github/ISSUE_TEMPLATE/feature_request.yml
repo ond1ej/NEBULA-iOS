@@ -1,0 +1,47 @@
+name: Feature request
+description: Suggest an improvement or a new capability for the iPhone, iPad or Mac app.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The apps are clients of a NEBULA server. A feature that needs new server behaviour also needs a change in
+        https://github.com/ond1ej/NEBULA_v1; please say so below. Some limits are deliberate: no App Store build, no
+        hosted service, no hard-coded servers, no analytics.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation and why the current behaviour is not enough.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: dropdown
+    id: server
+    attributes:
+      label: Does this need a server change?
+      options:
+        - "No, the app only"
+        - "Yes, the server as well"
+        - "Not sure"
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and privacy impact
+      description: Does this store anything new on the device, touch keys or secrets, or contact anything other than your server?
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I would like to work on this myself.

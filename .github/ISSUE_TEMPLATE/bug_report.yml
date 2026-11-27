@@ -1,0 +1,109 @@
+name: Bug report
+description: Something in the iPhone, iPad or Mac app does not work as documented.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        **Security problems must not be reported here.** Use private vulnerability reporting instead (see SECURITY.md).
+        Problems with the server itself belong in https://github.com/ond1ej/NEBULA_v1.
+
+        Please remove personal data before you post: names, e-mail addresses, Team IDs, bundle identifiers,
+        Tailscale or other host names, IP addresses, device identifiers, pairing links, tokens and keys, and
+        screenshots of private conversations, vault entries or desktops.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      options:
+        - iPhone
+        - iPad
+        - Mac
+        - iOS Simulator
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version or commit
+      placeholder: "1.0.0, or the output of: git rev-parse --short HEAD"
+    validations:
+      required: true
+  - type: input
+    id: server-version
+    attributes:
+      label: NEBULA server version
+      description: Shown in the app under Settings > About.
+      placeholder: "1.0.0"
+  - type: input
+    id: device
+    attributes:
+      label: Device, OS and Xcode version
+      placeholder: "for example: iPhone, iOS 18.x, built with Xcode 26.x"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Building or signing
+        - Pairing
+        - Chats
+        - Agents and tasks
+        - Activity and notifications
+        - Vault or Smart sign-in
+        - Live Desktop
+        - System
+        - Settings or app lock
+        - Localization
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: How the app reaches the server
+      options:
+        - Tailscale Serve
+        - Tailscale Funnel
+        - Cloudflare Tunnel
+        - Own reverse proxy
+        - Local test server
+        - Not relevant
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log lines or error messages
+      description: From Xcode's console or the error shown in the app. Read them before you paste them.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and the troubleshooting section of docs/using.md.
+          required: true
+        - label: I removed personal data, Team IDs, host names, tokens and keys from this report.
+          required: true

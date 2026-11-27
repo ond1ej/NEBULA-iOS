@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/ond1ej/NEBULA-iOS/security/advisories/new
+    about: Please report security problems privately through GitHub Security Advisories, not as an issue.
+  - name: NEBULA server (agents, VM, Dashboard, gateway)
+    url: https://github.com/ond1ej/NEBULA_v1/issues
+    about: Problems with the server, the Dashboard, pairing on the Mac or remote access belong in the NEBULA_v1 repository.
+  - name: Building and using the apps
+    url: https://github.com/ond1ej/NEBULA-iOS/tree/main/docs
+    about: Building, signing, push notifications, pairing and troubleshooting.

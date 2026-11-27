@@ -1,0 +1,72 @@
+# Build and test validation for every push and pull request. No secrets are used and nothing is signed.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apple:
+    name: NEBULAKit tests, iOS and Mac builds
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The code uses iOS 26 / macOS 26 APIs behind availability checks, so it needs Xcode 26 or later. The runner's
+      # default Xcode may be older: select the newest installed Xcode 26+ and fail loudly if there is none.
+      - name: Select Xcode 26 or later
+        run: |
+          version="$(ls -d /Applications/Xcode_*.app 2>/dev/null \
+            | sed -n 's|^/Applications/Xcode_\([0-9][0-9]*\(\.[0-9][0-9]*\)*\)\.app$|\1|p' \
+            | awk -F. '$1 >= 26' | sort -V | tail -1)"
+          if [ -z "$version" ]; then
+            echo "no Xcode 26 or later on this runner:" >&2
+            ls -d /Applications/Xcode*.app >&2 || true
+            exit 1
+          fi
+          echo "selecting Xcode $version"
+          sudo xcode-select -s "/Applications/Xcode_${version}.app/Contents/Developer"
+          xcodebuild -version
+          swift --version
+
+      - name: Script syntax
+        run: |
+          # one file per bash -n call: `bash -n a b c` checks only `a`
+          for f in scripts/*.sh; do
+            bash -n "$f" || { echo "shell syntax error: $f" >&2; exit 1; }
+          done
+          python3 -m py_compile scripts/*.py
+
+      - name: NEBULAKit build and tests
+        working-directory: NEBULAKit
+        run: |
+          swift build
+          swift test
+
+      - name: Build NEBULA iOS (simulator, unsigned)
+        run: |
+          xcodebuild -project NEBULA.xcodeproj -scheme "NEBULA iOS" \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build
+
+      - name: Build NEBULA Mac (unsigned)
+        run: |
+          xcodebuild -project NEBULA.xcodeproj -scheme "NEBULA Mac" \
+            -destination 'platform=macOS' \
+            -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build
+
+      # Runs on the string data both builds above extracted (SWIFT_EMIT_LOC_STRINGS=YES in the project)
+      - name: Localization check (every string in the catalog, with a Czech translation)
+        run: python3 scripts/check_localizations.py "$RUNNER_TEMP/dd" --lang cs

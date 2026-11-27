@@ -1,0 +1,38 @@
+# Your own signing values (template: Config/Local.xcconfig.example). Never commit this file.
+Config/Local.xcconfig
+
+# Xcode per-user state and build output
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+DerivedData/
+build/
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+
+# Local package output of scripts/build_mac_release.sh
+dist/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Provisioning profiles and signing material
+*.mobileprovision
+*.provisionprofile
+*.p8
+*.p12
+*.cer
+
+# macOS and editors
+.DS_Store
+.vscode/
+.idea/
+
+# Python helpers
+__pycache__/
+*.pyc
+.venv/
