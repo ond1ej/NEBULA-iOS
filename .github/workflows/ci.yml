@@ -16,8 +16,13 @@ concurrency:
 
 jobs:
   apple:
-    name: NEBULAKit tests, iOS and Mac builds
-    runs-on: macos-26
+    name: NEBULAKit tests, iOS and Mac builds (${{ matrix.runner }})
+    # macos-15 carries an older Xcode 26 and macos-26 a newer one: both must build
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-26]
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

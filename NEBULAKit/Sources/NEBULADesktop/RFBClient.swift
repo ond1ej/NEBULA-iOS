@@ -445,11 +445,14 @@ public actor RFBClient {
         fb.copy(fromX: sx, fromY: sy, toX: x, toY: y, width: w, height: h)
     }
 
+    // Closures below capture only `let` constants: a captured `var` in this async actor method crashes the Swift 6.2
+    // and 6.3 compilers (Xcode 26.x) in the SendNonSendable pass.
     private func decodeTight(x: Int, y: Int, width w: Int, height h: Int) async throws {
         let fb = try currentFramebuffer()
         try fb.validate(x: x, y: y, width: w, height: h)
+        let decoder = tight
         let control = try await readU8()
-        tight.resetStreams(control & 0x0F)
+        decoder.resetStreams(control & 0x0F)
         let kind = control >> 4
 
         switch kind {
@@ -464,42 +467,45 @@ public actor RFBClient {
                 try buffer.skip(length)
                 return
             }
-            let tight = self.tight
             try buffer.withBytes(length) { jpeg in
-                try tight.decodeJPEG(jpeg, x: x, y: y, width: w, height: h, into: fb)
+                try decoder.decodeJPEG(jpeg, x: x, y: y, width: w, height: h, into: fb)
             }
         case 0x00...0x07: // basic compression
             let streamID = Int(kind & 0x03)
-            var filter = TightDecoder.Filter.copy
+            let filter: TightDecoder.Filter
             if kind & 0x04 != 0 {
                 let id = try await readU8()
                 guard let f = TightDecoder.Filter(rawValue: id) else {
                     throw RFBError.protocolViolation("Tight filter \(id)")
                 }
                 filter = f
+            } else {
+                filter = .copy
             }
-            var paletteCount = 0
+            let paletteCount: Int
             if filter == .palette {
-                paletteCount = Int(try await readU8()) + 1
-                let colours = try await readBytes(paletteCount * 3)
-                colours.withUnsafeBytes { tight.setPalette($0, count: paletteCount) }
+                let count = Int(try await readU8()) + 1
+                let colours = try await readBytes(count * 3)
+                colours.withUnsafeBytes { decoder.setPalette($0, count: count) }
+                paletteCount = count
+            } else {
+                paletteCount = 0
             }
             let size = TightDecoder.dataSize(filter: filter, width: w, height: h, paletteCount: paletteCount)
             guard size <= TightDecoder.maximumDataSize else { throw RFBError.messageTooLarge(size) }
             guard size > 0 else { return }
-            let tight = self.tight
             if size < TightDecoder.minimumCompressedSize {
                 try await need(size)
                 try buffer.withBytes(size) { raw in
-                    try tight.apply(filter: filter, data: raw, x: x, y: y, width: w, height: h, into: fb)
+                    try decoder.apply(filter: filter, data: raw, x: x, y: y, width: w, height: h, into: fb)
                 }
             } else {
                 let length = try await readCompactLength()
                 guard length > 0 else { throw RFBError.truncated("empty Tight zlib payload") }
                 try await need(length)
                 try buffer.withBytes(length) { compressed in
-                    let data = try tight.inflate(stream: streamID, input: compressed, size: size)
-                    try tight.apply(filter: filter, data: data, x: x, y: y, width: w, height: h, into: fb)
+                    let data = try decoder.inflate(stream: streamID, input: compressed, size: size)
+                    try decoder.apply(filter: filter, data: data, x: x, y: y, width: w, height: h, into: fb)
                 }
             }
         default:
